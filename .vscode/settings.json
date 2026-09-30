@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd \"c:\\\\disk d\\\\Seventh Sem\\\\champ\\\\fastapi\" ; python -m pip install -r requirements\\.txt$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python -V$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

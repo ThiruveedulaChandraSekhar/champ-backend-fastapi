@@ -1,0 +1,145 @@
+{
+  "info": {
+    "name": "Medical AI Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Collection for Spring Boot to FastAPI medical AI calls."
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "health"]
+        }
+      }
+    },
+    {
+      "name": "Model status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/models/status",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "models", "status"]
+        }
+      }
+    },
+    {
+      "name": "Medicine success prediction",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"patient\": {\n    \"age\": 35,\n    \"gender\": \"MALE\"\n  },\n  \"current_treatment\": {\n    \"diagnosis\": \"Respiratory Infection\",\n    \"diagnosis_code\": \"J06.9\",\n    \"medicine\": \"Example Medicine\",\n    \"active_ingredient\": \"Example Ingredient\",\n    \"dosage\": \"500 mg\",\n    \"duration\": 5\n  },\n  \"history\": {\n    \"previous_medicines\": [\n      {\n        \"medicine\": \"Medicine A\",\n        \"active_ingredient\": \"Ingredient A\",\n        \"dosage\": \"250 mg\",\n        \"duration\": 5,\n        \"outcome\": \"EFFECTIVE\"\n      }\n    ],\n    \"previous_treatments\": [\n      {\n        \"diagnosis\": \"Previous Infection\",\n        \"recovery_days\": 4,\n        \"outcome\": \"EFFECTIVE\"\n      }\n    ]\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/predictions/medicine-success",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "predictions", "medicine-success"]
+        }
+      }
+    },
+    {
+      "name": "Recovery prediction",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"patient\": {\n    \"age\": 35,\n    \"gender\": \"MALE\"\n  },\n  \"current_treatment\": {\n    \"diagnosis\": \"Respiratory Infection\",\n    \"diagnosis_code\": \"J06.9\",\n    \"medicine\": \"Example Medicine\",\n    \"active_ingredient\": \"Example Ingredient\",\n    \"dosage\": \"500 mg\",\n    \"duration\": 5\n  },\n  \"history\": {\n    \"previous_visits\": [\n      {\n        \"diagnosis\": \"Fever\",\n        \"medicine\": \"Medicine A\",\n        \"recovery_days\": 4\n      },\n      {\n        \"diagnosis\": \"Respiratory Infection\",\n        \"medicine\": \"Medicine B\",\n        \"recovery_days\": 6\n      }\n    ]\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/predictions/recovery-time",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "predictions", "recovery-time"]
+        }
+      }
+    },
+    {
+      "name": "Drug allergy model safety check",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"medicineName\": \"Amoxicillin\",\n  \"activeIngredient\": \"amoxicillin\",\n  \"patientDrugAllergies\": [\"Penicillin\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/safety/check",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "safety", "check"]
+        }
+      }
+    },
+    {
+      "name": "Medical history summary",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"patient\": {\n    \"age\": 35,\n    \"gender\": \"MALE\"\n  },\n  \"diagnoses\": [\n    {\n      \"name\": \"Respiratory Infection\",\n      \"code\": \"J06.9\"\n    }\n  ],\n  \"medicines\": [\n    {\n      \"name\": \"Medicine A\",\n      \"active_ingredient\": \"Ingredient A\",\n      \"duration\": 5,\n      \"outcome\": \"EFFECTIVE\"\n    }\n  ],\n  \"allergies\": [\n    {\n      \"title\": \"Penicillin Allergy\",\n      \"severity\": \"HIGH\"\n    }\n  ],\n  \"visits\": [\n    {\n      \"diagnosis\": \"Respiratory Infection\",\n      \"medicine\": \"Medicine A\",\n      \"recovery_days\": 5,\n      \"outcome\": \"RECOVERED\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/history/summary",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "history", "summary"]
+        }
+      }
+    },
+    {
+      "name": "Medicine model training",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"records\": [\n    {\n      \"age\": 35,\n      \"gender\": \"MALE\",\n      \"diagnosis\": \"Respiratory Infection\",\n      \"diagnosis_code\": \"J06.9\",\n      \"medicine\": \"Medicine A\",\n      \"active_ingredient\": \"Ingredient A\",\n      \"dosage\": \"500 mg\",\n      \"duration\": 5,\n      \"previous_recovery_days\": 4,\n      \"previous_treatment_success\": 1,\n      \"medicine_success\": 1\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/admin/train/medicine-success",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "admin", "train", "medicine-success"]
+        }
+      }
+    },
+    {
+      "name": "Recovery model training",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"records\": [\n    {\n      \"age\": 35,\n      \"gender\": \"MALE\",\n      \"diagnosis\": \"Respiratory Infection\",\n      \"diagnosis_code\": \"J06.9\",\n      \"medicine\": \"Medicine A\",\n      \"active_ingredient\": \"Ingredient A\",\n      \"dosage\": \"500 mg\",\n      \"duration\": 5,\n      \"previous_recovery_days\": 4,\n      \"previous_visit_count\": 3,\n      \"previous_treatment_success\": 1,\n      \"recovery_days\": 5\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/v1/admin/train/recovery",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "v1", "admin", "train", "recovery"]
+        }
+      }
+    }
+  ]
+}
